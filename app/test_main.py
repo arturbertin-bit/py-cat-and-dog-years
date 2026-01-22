@@ -1,29 +1,45 @@
+import pytest
+
 from app.main import get_human_age
 
 
-def test_cat_and_dog_less_than_fifteen_years() -> None:
-    assert get_human_age(14, 14) == [0, 0]
+@pytest.mark.parametrize(
+    "ca, da, e",
+    [
+        (14, 14, [0, 0]),
+        (15, 15, [1, 1]),
+        (23, 23, [1, 1]),
+        (24, 24, [2, 2]),
+        (27, 27, [2, 2]),
+        (28, 28, [3, 2]),
+        (100, 100, [21, 17])
+    ]
+)
+class TestAnimal:
+
+    def test_cat_and_dog_less_than_fifteen_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_cat_and_dog_with_fifteen_years() -> None:
-    assert get_human_age(15, 15) == [1, 1]
+    def test_cat_and_dog_with_fifteen_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_all_animals_with_23_years() -> None:
-    assert get_human_age(23, 23) == [1, 1]
+    def test_all_animals_with_23_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_all_animals_with_24_years() -> None:
-    assert get_human_age(24, 24) == [2, 2]
+    def test_all_animals_with_24_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_all_animals_with_27_years() -> None:
-    assert get_human_age(27, 27) == [2, 2]
+    def test_all_animals_with_27_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_all_animals_with_28_years() -> None:
-    assert get_human_age(28, 28) == [3, 2]
+    def test_all_animals_with_28_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
 
 
-def test_all_animals_with_100_years() -> None:
-    get_human_age(100, 100) == [21, 17]
+    def test_all_animals_with_100_years(self, ca, da, e) -> None:
+        assert get_human_age(ca, da) == e
